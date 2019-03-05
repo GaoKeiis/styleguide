@@ -1,0 +1,25 @@
+{
+  "name": "toppro-google-styleguide",
+  "version": "1.0.0",
+  "description": "Google Style Guides",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/topproio/styleguide.git"
+  },
+  "keywords": [
+    "styleguide"
+  ],
+  "author": "toppro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/topproio/styleguide/issues"
+  },
+  "homepage": "https://github.com/topproio/styleguide#readme",
+  "devDependencies": {
+    "markdown-styles": "^3.1.10"
+  }
+}
