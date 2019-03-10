@@ -10,41 +10,43 @@
   <body class="markdown-body"><h1 id="javascript-编码风格指南">JAVASCRIPT 编码风格指南</h1>
 <h2 id="1、简介">1、简介</h2>
 <blockquote>
-<p>本文档用作JavaScript编程语言中Google源代码编码标准的完整定义。JavaScript源文件被描述为Google风格，当且仅当它符合此处的规则时。</p>
+<p>本文档用作JavaScript编程语言中Google源代码编码标准的完整定义。如果当 JavaScript 源文件遵循本文的规则时，才将其描述为 Google 风格。</p>
 </blockquote>
 <blockquote>
-<p>与其他编程风格指南一样，所涉及的问题不仅涉及格式化的美学问题，还涉及其他类型的约定或编码标准。但是，本文档主要关注我们普遍遵循的严格规则，并避免提供无法明确强制执行的建议（无论是通过人工还是工具）。</p>
+<p>与其他编程风格指南一样，所涉及的问题不仅涉及格式化的美学问题，还涉及其他类型的约定或编码标准。但是，本文档主要关注我们普遍遵循的严格规范，并避免给出无法明确执行的建议（无论是通过人还是工具）。</p>
 </blockquote>
 <hr>
-<h3 id="11-注释说明">1.1 注释说明</h3>
-<h4 id="在本文档中另有说明">在本文档中另有说明</h4>
+<h3 id="11-语法注释">1.1 语法注释</h3>
+<h4 id="除非在本文档中另有说明">除非在本文档中另有说明</h4>
 <ol>
-<li><p>&quot;注释&quot; 一词常常是对指定代码的解释说明，我们不使用短语&quot;documentation comments&quot;，而是使用公共术语“JSDoc”来表示内部的人可读文本和电脑可读的注释</p>
+<li><p>语法注释常常是对指定代码来实现注释，我们不使用短语 &quot;documentation comments&quot;，而是在 /** … */. 中采用了通用术语 “JSDoc” 来表示内部的人可读文本和电脑可读的注释 </p>
 </li>
-<li><p>当使用短语&quot;must、must not、should、should not&quot;和&quot;may&quot;时，本样式指南使用 [RFC2119] ：   <a href="https://tools.ietf.org/html/rfc2119" title="RFC2119">RFC2119</a>术语，&quot;prefer&quot; 和 &quot;avoid&quot;分别对应于&quot;should&quot; 和 &quot;should not&quot;,命令式的描述和声明式的描述是约定好的，必须相知于对应的。</p>
-<p>其他说明注释偶尔会在这个文档中出现。</p>
+<li><p>本风格指南在使用短语 &quot;must、must not、should、should not&quot;和&quot;may&quot;时，使用的是 [RFC2119] ：   <a href="https://tools.ietf.org/html/rfc2119" title="RFC2119">RFC2119</a>术语，&quot;prefer&quot; 和 &quot;avoid&quot;分别对应于&quot;should&quot; 和 &quot;should not&quot;,命令式和声明式的语句是说明性的，必须相互对应的。</p>
+<p>其他说明注释偶尔会在整个文档中出现。</p>
 </li>
 </ol>
 <h3 id="12-前提说明">1.2 前提说明</h3>
-<p>   本文件中的例子是非规范性的，也就是说，虽然示例采用的是谷歌样式，但它们可能并不是表示代码的惟一最好的方法，示例中所做的可选格式选择不能作为规范强制执行。</p>
-<h2 id="2、源文件的基础">2、源文件的基础</h2>
+<p>   本文档中的示例代码是不规范的，也就是说，虽然这些例子是在谷歌风格，但它们可能并不是表示代码的惟一最好的方法，示例中所做的可选格式不能作为规范强制执行。</p>
+<h2 id="2、源文件的基础知识">2、源文件的基础知识</h2>
 <h3 id="21-文件名">2.1 文件名</h3>
-<p>  文件名必须全部小写，并且可以包含下划线（_）或短划线（-），但不能包含其他标点符号。遵循项目使用的约定。文件名的扩展名必须是.js。</p>
+<p>  文件名必须全部小写，并且可以包含下划线（_）或短划线（-），但不能添加其他标点符号。按照项目使用的约定进行操作。文件名的扩展名必须是 .js。</p>
 <h3 id="22-文件编码：utf-8">2.2 文件编码：UTF-8</h3>
 <p>源文件以UTF-8编码。</p>
 <h3 id="23-特殊字符">2.3 特殊字符</h3>
 <h4 id="231-空白字符">2.3.1 空白字符</h4>
 <p>  除了行结束符之外，ASCII水平空间字符(0x20)是源文件中惟一出现的空白字符。这意味着：</p>
 <ol>
-<li>字符串字面量中的所有其他空白字符都转义</li>
-<li>制表符不用于缩进。</li>
+<li><p>字符串文本中的所有其他空格字符都将被转义</p>
+</li>
+<li><p>制表符不能用于缩进。</p>
+</li>
 </ol>
 <h4 id="232-特殊的转义序列">2.3.2 特殊的转义序列</h4>
-<p>对于具有特殊转义序列中  (&quot;&quot;,&quot; &quot;,&quot; \&quot;,&quot; \b&quot;, &quot;\f&quot;, &quot;\n&quot;, &quot;\r&quot;, &quot;\t&quot;, &quot;\v&quot;)的任何字符, 将使用该序列, 而不是相应的数字转义 (例如&quot; \x0a, \u000a, 或 \u{a}&quot;)传统的八进制转义从未使用过。</p>
-<h4 id="233非ascii字符">2.3.3非ASCII字符</h4>
-<p>对于剩余的非ASCII字符，使用实际的Unicode字符（例如∞）或等效的十六进制或Unicode转义（例如\u221e），这取决于哪些使代码更易于阅读和理解。</p>
+<p>对于具有特殊转义序列中  (&quot;&quot;,&quot; &quot;,&quot; \&quot;,&quot; \b&quot;, &quot;\f&quot;, &quot;\n&quot;, &quot;\r&quot;, &quot;\t&quot;, &quot;\v&quot;)的字符, 将使用该序列, 而不是相应的数字转义 (例如&quot; \x0a, \u000a, 或 \u{a}&quot;) 永远不会使用传统的八进制转义。</p>
+<h4 id="233-非ascii字符">2.3.3 非ASCII字符</h4>
+<p>对于其余的非 ascii 字符, 使用实际的 unicode 字符 (例如∞) 或等效十六进制或 unicode 转义 (例如\u221e), 这取决于哪种字符使代码更易于阅读和理解.</p>
 <blockquote>
-<p>提示：在Unicode转义情况下，有时甚至在使用实际的Unicode字符时，解释性注释可能非常有用。</p>
+<p>提示：在 unicode 转义的情况下, 偶尔甚至在使用实际 unicode 字符时, 解释性注释也会非常有用。</p>
 </blockquote>
 <table>
 <thead>
@@ -55,15 +57,15 @@
 </thead>
 <tbody><tr>
 <td>const units = &#39;μs&#39;;</td>
-<td>Best:即使没有评论也非常清晰。</td>
+<td>Best: 即使没有描述也非常清晰。</td>
 </tr>
 <tr>
 <td>const units = &#39;\u03bcs&#39;; // &#39;μs&#39;</td>
-<td>最好的：允许，但是没有理由这么做。</td>
+<td>允许这么写，但是没有理由这么做。</td>
 </tr>
 <tr>
 <td>const units = &#39;\u03bcs&#39;; // Greek letter mu, &#39;s&#39;</td>
-<td>允许，但很不方便，容易出错。</td>
+<td>允许这么写，但很不方便，容易出错。</td>
 </tr>
 <tr>
 <td>const units = &#39;\u03bcs&#39;;</td>
@@ -71,7 +73,7 @@
 </tr>
 <tr>
 <td>return &#39;\ufeff&#39; + content; // byte order mark</td>
-<td>Good ：对不可打印的字符使用转义符，必要时添加注释</td>
+<td>Good ：不可打印的字符使用转行, 必要时进行注释。</td>
 </tr>
 </tbody></table>
 </body>
